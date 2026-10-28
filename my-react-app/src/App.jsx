@@ -4,8 +4,8 @@ import SearchFilter from "./components/SearchFilter";
 function App() {
   return (
     <div>
-      {/* <Stopwatch /> */}
-      <SearchFilter />
+      <Stopwatch />
+      {/* <SearchFilter /> */}
     </div>
   );
 }

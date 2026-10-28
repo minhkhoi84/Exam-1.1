@@ -29,12 +29,9 @@ src/
   components/         ← các component (logic + giao diện)
     Stopwatch.jsx
     SearchFilter.jsx
-  styles/             ← CSS riêng của từng component
-    Stopwatch.css
-    SearchFilter.css
 ```
 
-**Lưu ý về CSS:** khi `import "../styles/Stopwatch.css"`, CSS đó áp dụng cho **toàn bộ app**, không chỉ riêng component import nó. Vì vậy nên đặt tên class có tiền tố riêng (`.stopwatch`, `.contact-table`…) để tránh hai component đè style lên nhau.
+**Giao diện dùng [MUI](https://mui.com/material-ui/)** (`@mui/material`): `Button`, `TextField`, `Table`… Style viết qua prop `sx` ngay trong component, nên không cần file CSS riêng.
 
 ---
 

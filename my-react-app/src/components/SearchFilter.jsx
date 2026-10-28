@@ -1,5 +1,7 @@
 import { useState } from "react";
-import "../styles/SearchFilter.css";
+import {
+  Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography,
+} from "@mui/material";
 
 // Danh sách gốc: mỗi liên hệ là một object, có id riêng để dùng làm key
 const contacts = [
@@ -26,45 +28,48 @@ export default function SearchFilter() {
   );
 
   return (
-    <div className="contact-keeper">
-      <h1>Contact </h1>
+    <Box sx={{ maxWidth: 700, width: "100%", p: 2 }}>
+      <Typography variant="h4" align="center" gutterBottom>Contact</Typography>
 
-      <input
-        type="text"
-        className="search-input"
-        placeholder="Search contacts"
+      <TextField
+        fullWidth
+        size="small"
+        label="Search contacts"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        sx={{ mb: 2, bgcolor: "background.paper" }}
       />
 
-      <table className="contact-table">
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredContacts.map((contact) => (
-            <tr key={contact.id}>
-              <td>{contact.firstName}</td>
-              <td>{contact.lastName}</td>
-              <td>{contact.email}</td>
-              <td>{contact.phone}</td>
-            </tr>
-          ))}
+      <TableContainer component={Paper}>
+        <Table size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell sx={{ fontWeight: "bold" }}>First Name</TableCell>
+              <TableCell sx={{ fontWeight: "bold" }}>Last Name</TableCell>
+              <TableCell sx={{ fontWeight: "bold" }}>Email</TableCell>
+              <TableCell sx={{ fontWeight: "bold" }}>Phone</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {filteredContacts.map((contact) => (
+              <TableRow key={contact.id} hover sx={{ "&:nth-of-type(odd)": { bgcolor: "action.hover" } }}>
+                <TableCell>{contact.firstName}</TableCell>
+                <TableCell>{contact.lastName}</TableCell>
+                <TableCell>{contact.email}</TableCell>
+                <TableCell>{contact.phone}</TableCell>
+              </TableRow>
+            ))}
 
-          {filteredContacts.length === 0 && (
-            <tr>
-              <td colSpan={4} className="no-results">
-                No contacts found
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
+            {filteredContacts.length === 0 && (
+              <TableRow>
+                <TableCell colSpan={4} align="center" sx={{ color: "text.secondary" }}>
+                  No contacts found
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
   );
 }
